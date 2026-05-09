@@ -1,4 +1,4 @@
-// En estas primeras 6 preguntas, reemplaza `null` por la respuesta
+// En estas primeras preguntas sustituye `null` por la respuesta (constantes iniciales + hoisting):
 
 // Crea una variable "string", puede contener lo que quieras:
 const nuevaString = null;
@@ -18,7 +18,13 @@ const nuevaMultiplicacion = 10 * null === 40 ;
 // Resuelve el siguiente problema matemático:
 const nuevoModulo = 21 % 5 === null;
 
-// En los próximos 22 problemas, deberás completar la función.
+// Pensá este orden como si siguiera ejecutándose línea por línea (hoisting de `var`):
+// console.log(typeof y);
+// var y = 10;
+// ¿Qué string devuelve `typeof y` antes de llegar al `=` ? Reemplazá null por ese string entre comillas.
+const resultadoHoisting = null;
+
+// En los próximos problemas, deberás completar la función.
 // Todo tu código irá dentro de las llaves de la función.
 // Asegúrate que usas "return" cuando la consola te lo pida.
 // Pista: "console.log()" NO fucionará.
@@ -36,7 +42,7 @@ function suma(x, y) {
 }
 
 function resta(x, y) {
-  // Resta "x" de "y" y devuelve el valor
+  // Devuelve "x" menos "y" 
   // Tu código:
 }
 
@@ -53,6 +59,12 @@ function divide(x, y) {
 function sonIguales(x, y) {
   // Devuelve "true" si "x" e "y" son iguales
   // De lo contrario, devuelve "false"
+  // Tu código:
+}
+
+function sonEstrictamenteIguales(x, y) {
+  // Igualdad estricta: usá sólo === (no uses ==).
+  // Devolvé false si tipos o valores difieren (ej. 5 y '5' -> false).
   // Tu código:
 }
 
@@ -195,6 +207,167 @@ function esPrimo(numero) {
   // Nota: Los números 0 y 1 NO son considerados números primos
 }
 
+// --- Temario ampliado (alcance let/const, tipos, operadores, Math, strings, condicionales, bucles avanzados) ---
+
+function valoresDelIndiceConLetEnBucle() {
+  // Debés usar `let` en el declarador del `for` (no uses `var` en ese lugar).
+  // Creá tres funciones en un bucle for (let i = 0; i < 3; i++) que cada una devuelva su i al invocarse.
+  // Devolvé el array resultado de ejecutar cada función: debe ser [0, 1, 2].
+  // Tu código:
+}
+
+function construirListaConConstMutando() {
+  // Usá una constante para el arreglo (const lista = [];). No reasignes `lista`; usá `.push`.
+  // Llenalo con los números 1, 2 y 3 en un bucle for y devolvé ese arreglo.
+  // Tu código:
+}
+
+function esRealmenteNulo(valor) {
+  // Devuelve true sólo cuando `valor` es exactamente null (=== null).
+  // Tu código:
+}
+
+function esValorUndefined(valor) {
+  // Devuelve true sólo cuando `valor` es undefined (idealmente usando === sin coerciones raras).
+  // Tu código:
+}
+
+function esNumeroValido(n) {
+  // Devuelve true si `n` es de tipo número y NO es NaN (p.ej. Number.isNaN o comparación conocida).
+  // Tu código:
+}
+
+function acumularPorPasos(inicial, pasos) {
+  // Sumá/restá al total usando += y -= dentro de un bucle. `pasos` es un array de números (ej. [10, -3, 2]).
+  // Empezás en `inicial`; devolvé el total final.
+  // Tu código:
+}
+
+function aplicarIncrementoDesdeCero(intentos) {
+  // Variable contador inicializada en 0; repetí intentos veces usando un bucle for y ++ en cada vuelta.
+  // Devolvé el valor final del contador.
+  // Tu código:
+}
+
+function enteroDesdeBinario(binarioStr) {
+  // Usá parseInt con radix 2. Ejemplo: '1010' -> 10
+  // Tu código:
+}
+
+function floatDesdeTexto(texto) {
+  // Usá parseFloat sobre la cadena. Ejemplo: '3.14' -> 3.14 ; '99px' típicamente trunca número inicial.
+  // Tu código:
+}
+
+function precioFormateadoDosDecimales(precio) {
+  // Devolvé una string con el número con dos decimales usando .toFixed(2).
+  // Tu código:
+}
+
+function esNumeroFinitoValor(n) {
+  // Devuelve true sólo cuando el número es finito (usá Number.isFinite).
+  // Tu código:
+}
+
+function redondearHaciaAbajo(num) {
+  // Usá Math.floor.
+  // Tu código:
+}
+
+function aleatorioEnteroInclusive(min, max) {
+  // Devolvé un entero entre min y max inclusives usando Math.floor y Math.random.
+  // Fórmula estándar: Math.floor(Math.random() * (max - min + 1)) + min
+  // Tu código:
+}
+
+function buscarIndiceCadena(texto, subcadena) {
+  // Usá indexOf. Si no aparece devolvé -1 (comportamiento estándar de indexOf).
+  // Tu código:
+}
+
+function extraerPorSlice(texto, inicio, fin) {
+  // Usá slice exclusivo final `fin` igual que JS (no incluye el índice fin).
+  // Tu código:
+}
+
+function limpiarEspaciosExtremos(texto) {
+  // Usá trim.
+  // Tu código:
+}
+
+function partirEnEspacios(texto) {
+  // Dividí palabras separadas por un único caracter espacio usando split con ' '.
+  // Ejemplo 'hola mundo' -> ['hola','mundo']
+  // Tu código:
+}
+
+function reemplazarGuionesPorEspacio(texto) {
+  // Reemplazá todos los caracteres '-' por un espacio ' ' con replace/replaceAll según soporte esperado ES6+
+  // Tu código:
+}
+
+function minusculasYRecortado(texto) {
+  // Aplicá trim() y después toLowerCase() al resultado.
+  // Tu código:
+}
+
+function mayusculasTrasTrim(texto) {
+  // Aplicá trim() y después toUpperCase().
+  // Tu código:
+}
+
+function puedePasarAlEvento(edad, tieneEntrada, esVIP) {
+  // puede pasar si edad >= 18 Y (tieneEntrada ES true OR esVIP ES true). Usá && y || explícitos.
+  // Tu código:
+}
+
+function noEsValorFalso(valor) {
+  // Devolvé true siempre que `valor` no sea EXACTAMENTE el boolean false (=== false debe fallar sólo ante false literal).
+  // Ejemplos: 0, '', null, undefined, true deben devolver true; false devuelve false.
+  // Usá negación explícita (!).
+  // Tu código:
+}
+
+function clasificarSigno(num) {
+  // Usá sólo expresiones ternarias (sin if/switch): devolvé la string 'positivo', 'negativo' o 'cero'.
+  // Tu código:
+}
+
+function clasificarTipoDia(codigo) {
+  // Usá switch. Códigos: 'lun'|'mar'|'mie'|'jue'|'vie' laborable -> 'habil'.
+  // 'sab' o 'dom' -> fin de semana -> 'descanso'
+  // Cualquier otro valor debe caer en default y devolver 'desconocido'
+  // Tu código:
+}
+
+function sumaDesdeUnoConWhile(numeroFinal) {
+  // Sumá 1+2+...+numeroFinal usando sólo while. Si numeroFinal < 1 devolvé 0.
+  // Tu código:
+}
+
+function primerMultiploEnIntervaloDoWhile(inicio, divisor, limiteSuperior) {
+  // Encontrá el primer múltiplo natural de divisor que sea >= inicio usando do...while.
+  // Si divisor es 0 o no existe un múltiplo menor o igual a limiteSuperior, devolvé null.
+  // Evitá bucles infinitos: cortá antes de sobrepasar limiteSuperior.
+  // Tu código:
+}
+
+function tablaMultiplicacionForBase(base) {
+  // Devolvé un array de 10 posiciones donde la posición k (0-index) es base * (k+1).
+  // Usá sólo bucle for. Ejemplo base 5 -> [5,10,...,50]
+  // Tu código:
+}
+
+function saludarConTitulo(nombre, titulo = 'Sr.') {
+  // Valor por defecto ya está en la firma: devolvé `"Hola, titulo nombre!"` (con espacio y signos ej. Hola, Sr. Ana!)
+  // Tu código:
+}
+
+function elevarConExponentePorDefecto(base, exponente = 2) {
+  // exponente por defecto 2: devolvé base elevado exponente usando Math.pow o **.
+  // Tu código:
+}
+
 // No modificar nada debajo de esta línea
 // --------------------------------
 
@@ -205,9 +378,11 @@ module.exports = {
   nuevaResta,
   nuevaMultiplicacion,
   nuevoModulo,
+  resultadoHoisting,
   devolverString,
   tienenMismaLongitud,
   sonIguales,
+  sonEstrictamenteIguales,
   menosQueNoventa,
   mayorQueCincuenta,
   suma,
@@ -232,5 +407,34 @@ module.exports = {
   estaEnRango,
   esEntero,
   fizzBuzz,
-  esPrimo
+  esPrimo,
+  valoresDelIndiceConLetEnBucle,
+  construirListaConConstMutando,
+  esRealmenteNulo,
+  esValorUndefined,
+  esNumeroValido,
+  acumularPorPasos,
+  aplicarIncrementoDesdeCero,
+  enteroDesdeBinario,
+  floatDesdeTexto,
+  precioFormateadoDosDecimales,
+  esNumeroFinitoValor,
+  redondearHaciaAbajo,
+  aleatorioEnteroInclusive,
+  buscarIndiceCadena,
+  extraerPorSlice,
+  limpiarEspaciosExtremos,
+  partirEnEspacios,
+  reemplazarGuionesPorEspacio,
+  minusculasYRecortado,
+  mayusculasTrasTrim,
+  puedePasarAlEvento,
+  noEsValorFalso,
+  clasificarSigno,
+  clasificarTipoDia,
+  sumaDesdeUnoConWhile,
+  primerMultiploEnIntervaloDoWhile,
+  tablaMultiplicacionForBase,
+  saludarConTitulo,
+  elevarConExponentePorDefecto
 };

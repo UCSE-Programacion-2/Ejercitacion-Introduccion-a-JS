@@ -12,7 +12,8 @@ En esta lección cubriremos:
 * Operadores de comparación (continuación)
 * Flujos de control (continuación)
 * Operados lógicos
-* Bucles `for`
+* Bucles `for`, `while` y `do…while`
+* `switch` / ternarios (resumen hacia práctica)
 * Introducción a Node y NPM
 
 ## Introducción a Javascript
@@ -132,6 +133,23 @@ Math.floor(6.999) = 6;
 Math.ceil(6.0001) = 7;
 ```
 
+### Aleatoriedad y otros útiles (`Math.floor`, `Math.random`)
+
+Cuando necesitás un **entero** entre **`min`** y **`max`** (ambos inclusives), combinás ambos así:
+
+```javascript
+Math.floor(Math.random() * (max - min + 1)) + min;
+```
+
+`Math.random()` devuelve un número mayor o igual que 0 y **menor** que 1; por eso el producto antes del **`floor`** se “encaja” al rango de índices deseados.
+
+### De cadena a número (`parseInt`, `parseFloat`, `Number.isFinite`, `toFixed`)
+
+- **`parseInt(texto, radix)`**: convierte texto a entero. Si el trabajo es binario (**`radix` 2**), por ejemplo **`'1010'`** → **`10`** en decimal.
+- **`parseFloat(texto)`**: lee un número decimal y se detiene al primer caracter no numérico (por ejemplo **`'12kg'`** → **`12`**).
+- **`precio.toFixed(2)`** devuelve un **string** con dos decimales (útil para mostrar euros o pesos con centavos).
+- **`Number.isFinite(n)`** distingue un número ordinario frente a **`Infinity`** o **`NaN`**.
+
 ### .length
 
 El tipo de datos "string" tiene un método incorporado llamado `.length`. Cualquier cadena que llamemos a esto devolverá la cantidad de caracteres en esa cadena.
@@ -206,6 +224,22 @@ function sumarDosNumeros(a, b) {
 
 sumarDosNumeros(1, 5); // 6
 ```
+
+### Parámetros por defecto (ES6)
+
+Podés inicializar argumentos cuando el llamador no los pasa, directamente en la firma (**`= valor`**):
+
+```javascript
+function elevar(base, expo = 2) {
+  return Math.pow(base, expo);
+}
+
+elevar(4);       // usa expo = 2 → 16
+elevar(2, 3);    // 8
+```
+
+En el **`homework.js`** verás ese patrón en funciones donde la consigna ya deja escritos **`titulo = 'Sr.'`** o **`exponente = 2`**: completás el **`return`** respetando esos valores.
+
 ### Declaración "return" y Scope
 
 En el ejemplo anterior presentamos la declaración `return`. No vamos a usar `console.log` con todo lo que salga de una función. Lo más probable es que queramos devolver algo. En este caso es la suma de los dos números. Piense en la declaración de retorno ("return") como la única forma en que los datos escapan de una función. No se puede acceder a nada más que a lo que se devuelve fuera de la función. También tenga en cuenta que cuando una función golpea una declaración de retorno, la función detiene inmediatamente lo que está haciendo y "devuelve" lo especificado.
@@ -455,12 +489,96 @@ for (let i = 0; i >= 0; i++) {
 
 Debido a que nuestra expresión condicional SIEMPRE será `true` (` i` nunca será menor que 0), este ciclo se ejecutará esencialmente para siempre. Esto interrumpirá su programa y puede bloquear su navegador web o computadora.
 
+## Bucles `while` y `do…while`
+
+Además del **`for`**, podés repetir con **`while`** mientras una condición sea **`true`** (la evaluás **antes** de cada pasada):
+
+```javascript
+function sumatoriaHastaN(n) {
+  let suma = 0;
+  let i = 1;
+  while (i <= n) {
+    suma += i;
+    i++;
+  }
+  return suma;
+}
+```
+
+Con **`do { … } while (condicion)`**, el bloque **`do`** ocurre **al menos una vez** y la condición se evalúa **al final**:
+
+```javascript
+let i = 0;
+do {
+  i += 1;
+} while (i < 3); // el cuerpo del do corre 3 veces; al final i queda en 3 y la condición falla
+```
+
+Como siempre que haya repetición: asegurate de que la condición o un **`break`** permitan **salir**; si no tenés garantía matemática, agregá contadores máximos o cortes (**`primerMultiploEnIntervaloDoWhile`** en **`homework.js`** lo pide así).
+
+### Operador ternario (`condición ? casoTrue : casoFalse`)
+
+Es una forma compacta de elegir resultado sin abrir **`if`** cuando son expresiones pequeñas:
+
+```javascript
+const etiqueta = n > 0 ? 'positivo' : n < 0 ? 'negativo' : 'cero';
+```
+
+Las consignas del **`homework`** a veces te piden **sólo ternarios** (sin **`if`**), para pensar esa sintaxis antes de llegar al **`switch`**.
+
+### `switch` / `case` / `default`
+
+Encadena muchas comparaciones contra **una** expresión; **`break`** corta (**sin** **`break`** el flujo sigue por el siguiente **`case`**). **`default`** se ejecuta si ningún **`case`** coincidió:
+
+```javascript
+switch (dia) {
+  case 'lun':
+    return 'laborable';
+  case 'dom':
+    return 'finde';
+  default:
+    return 'desconocido';
+}
+```
+
+## Mapa práctica (`homework.js` ↔ temario introductorio)
+
+| Tema | Funciones / constantes de referencia |
+|------|--------------------------------------|
+| `var` / `let` / `const` y mutación | `valoresDelIndiceConLetEnBucle`, `construirListaConConstMutando`, `resultadoHoisting` |
+| Tipos, `null`, `undefined`, `NaN` | `esRealmenteNulo`, `esValorUndefined`, `esNumeroValido`, `esNumeroFinitoValor` |
+| Operadores aritméticos y composición (`+=`, `++`, …) | Ejercicios iniciales y `acumularPorPasos`, `aplicarIncrementoDesdeCero` |
+| `Number`, `parseInt`, `parseFloat`, `toFixed` | `enteroDesdeBinario`, `floatDesdeTexto`, `precioFormateadoDosDecimales` |
+| `Math` (potencias ya en ejercicios base; aleatorio/floor nuevos) | `redondearHaciaAbajo`, `aleatorioEnteroInclusive`; seguir usando `Math` donde indique cada consigna |
+| Strings (`length`, `indexOf`, `slice`, …) | `tienenMismaLongitud` (base), más `buscarIndiceCadena`, `extraerPorSlice`, `limpiarEspaciosExtremos`, `partirEnEspacios`, `reemplazarGuionesPorEspacio`, `minusculasYRecortado`, `mayusculasTrasTrim` |
+| Comparación `===` y AND / OR / NOT (`&&`, doble barra, `!`) | `sonEstrictamenteIguales`, `puedePasarAlEvento`, `noEsValorFalso` |
+| `if`, ternario, `switch/default` | Varios ejercicios base; nuevos `clasificarSigno` (ternarios), `clasificarTipoDia` (`switch`) |
+| `for`, `while`, `do…while` | `sumaDesdeUnoConWhile`, `primerMultiploEnIntervaloDoWhile`, `tablaMultiplicacionForBase`; `for` también en `esPrimo`, etc. |
+| Funciones: parámetros, `return`, valores por defecto | Todas las funciones; destacar `saludarConTitulo`, `elevarConExponentePorDefecto` |
 
 ## Introducción a Node y NPM
 
 _Node.js_ es un entorno de tiempo de ejecución desarrollado originalmente para su uso en servidores/back-end. Tendremos que instalarlo en nuestras máquinas para completar los próximos ejercicios. Para instalar Node, haga clic aquí: [Descargar e instalar Node.js](https://nodejs.org/en/download/). Node viene con "NPM" incluido. NPM es un administrador de paquetes ("package manager") para paquetes Javascript y lo usaremos a lo largo de nuestro aprendizaje. Una vez que hayas instalado Node.js, no necesitas hacer nada más para instalar NPM.
 
-## Abre la carpeta "homework" y completa la tarea descrita en el archivo README
+### Archivos del ejercicio y tests
+
+- Completá **`homework.js`** en la raíz de este proyecto (primero las constantes sustituyendo `null`, luego cada función). No cambies los nombres ni el bloque `module.exports`.
+- Las pruebas están en **`tests/pruebas.test.js`**.
+
+### GitHub Classroom y Actions (autoevaluación)
+
+- Este repositorio usa **GitHub Actions** para ejecutar `npm ci` + `npm test` automáticamente.
+- La plantilla también incluye un workflow de **issues automáticas** (idempotente) para guiar la entrega.
+- En GitHub Classroom, el resultado de Actions es feedback rápido; la corrección docente sigue siendo complementaria.
+
+```bash
+npm install
+npm test
+```
+
+## Práctica guiada por tests
+
+Las consignas concretas están en los comentarios de **`homework.js`** y la tabla anterior enlaza tema ↔ función. Si algún método de texto (**`slice`**, **`replace`**, etc.) aparece sólo mencionado en el mapa, complementá con la documentación recomendada al final (**MDN**) mientras desarrollás el ejercicio.
 
 ## Recursos adicionales
 
@@ -471,3 +589,8 @@ _Node.js_ es un entorno de tiempo de ejecución desarrollado originalmente para 
 * [MDN: Control Flow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
 * [MDN: Logical Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
 * [MDN: for Loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+* [MDN (es): `while` y `do…while`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/while)
+* [MDN (es): condicional ternario (`? :`)](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
+* [MDN (es): `switch`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/switch)
+* [MDN (es): `parseInt`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+* [MDN (es): métodos de `String`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String)
