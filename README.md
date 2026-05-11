@@ -2,19 +2,28 @@
 
 En esta lección cubriremos:
 
-* Introducción a Javascript
-* Variables
-* Strings, Numbers y Booleanos
-* Math
-* Introducción a las Funciones
-* Control de flujo y operadores de comparación
-* `Undefined` y `null`
-* Operadores de comparación (continuación)
-* Flujos de control (continuación)
-* Operados lógicos
-* Bucles `for`, `while` y `do…while`
-* `switch` / ternarios (resumen hacia práctica)
-* Introducción a Node y NPM
+- Introducción a Javascript
+- Variables
+- Strings, Numbers y Booleanos
+- Math
+- Introducción a las Funciones
+- Control de flujo y operadores de comparación
+- `Undefined` y `null`
+- Operadores de comparación (continuación)
+- Flujos de control (continuación)
+- Operados lógicos
+- Bucles `for`, `while` y `do…while`
+- `switch` / ternarios (resumen hacia práctica)
+- Introducción a Node y NPM
+
+## Herramientas de editor (ESLint / Prettier / VS Code)
+
+En la raiz del repositorio estan `.vscode/`, `.eslintrc.json`, `.prettierrc.js`, `.prettierignore` y `.env.example` (referencia generica). Tambien hay una copia del kit en `Configuration-Files/backend-nodejs/` con su `README.md` y el `package.json` de ejemplo orientado a Express/Mongo; **este ejercicio usa solo Jest**: las dependencias y scripts que aplican aca estan en el `package.json` de la raiz.
+
+- `npm run lint` / `npm run lint:fix`
+- `npm run format` / `npm run format:check`
+
+Al abrir el proyecto, acepta instalar las extensiones recomendadas.
 
 ## Introducción a Javascript
 
@@ -29,10 +38,11 @@ En el corazón de Javascript se encuentran las variables. Una variable es una fo
 La anatomía de una variable es primero la palabra clave, un espacio, el nombre que le estamos dando a la variable, un signo de "igual", el valor que le estamos asignando a la variable y luego el punto y coma.
 
 Existen tres formas de declarar una variable:
+
 ```javascript
-    var nombre = 'Juan';
-    let apellido = 'Perez';
-    const comidafavorita = 'Pizza';
+var nombre = 'Juan';
+let apellido = 'Perez';
+const comidafavorita = 'Pizza';
 ```
 
 ### var
@@ -68,6 +78,7 @@ Las "strings" son bloques de texto, siempre se definirán entre comillas, ya sea
 ```javascript
 const nombrePerro = 'firulais';
 ```
+
 ### Numbers
 
 Los números son solo eso, números. Los números NO se envuelven en comillas. Pueden ser negativos también. Javascript tiene una limitación en el tamaño de un número (+/- 9007199254740991), pero muy raramente aparecerá esa limitación en nuestro uso diario.
@@ -89,7 +100,7 @@ const meEncantaJavascript = true;
 
 Los operadores matemáticos trabajan en JavaScript tal como lo harían en su calculadora.
 
-### + - * / =
+### + - \* / =
 
 ```javascript
 1 + 1 = 2
@@ -166,9 +177,9 @@ Veremos muchos otros métodos integrados en otros tipos de datos a lo largo de e
 Ahora que tenemos un conjunto de variables, necesitamos funciones para calcularlas, cambiarlas, hacer algo con ellas. Hay tres formas en que podemos construir una función.
 
 ```javascript
-    function miFuncion() {}
-    const otraFuncion = function () {};
-    const yOtra = () => {};
+function miFuncion() {}
+const otraFuncion = function () {};
+const yOtra = () => {};
 ```
 
 Usaremos la primera forma en esta lección y hablaremos sobre las otras formas en próximas lecciones.
@@ -183,7 +194,7 @@ Una función comenzará con la palabra clave `function`, esto le dice a lo que s
 
 ```javascript
 function logHola() {
-    console.log('hola!');
+  console.log('hola!');
 }
 
 logHola();
@@ -197,7 +208,7 @@ Ahora que podemos ejecutar una función básica, vamos a comenzar a pasarle argu
 
 ```javascript
 function logHola(nombre) {
-    console.log('Hola, ' + nombre);
+  console.log('Hola, ' + nombre);
 }
 
 logHola('Martin');
@@ -207,7 +218,7 @@ Si agregamos una variable a los paréntesis cuando declaramos la función, podem
 
 ```javascript
 function logHola(nombre) {
-    console.log( `Hola, ${nombre}`);
+  console.log(`Hola, ${nombre}`);
 }
 
 const miNombre = 'Antonio';
@@ -234,8 +245,8 @@ function elevar(base, expo = 2) {
   return Math.pow(base, expo);
 }
 
-elevar(4);       // usa expo = 2 → 16
-elevar(2, 3);    // 8
+elevar(4); // usa expo = 2 → 16
+elevar(2, 3); // 8
 ```
 
 En el **`homework.js`** verás ese patrón en funciones donde la consigna ya deja escritos **`titulo = 'Sr.'`** o **`exponente = 2`**: completás el **`return`** respetando esos valores.
@@ -253,6 +264,7 @@ function dividirDosNumeros(a, b) {
 dividirDosNumeros(6, 3); // 2
 console.log(producto); // undefined
 ```
+
 Si intentamos `console.log` algo que declaramos dentro de la función, devolverá `undefined` porque no tenemos acceso a él fuera de la función. Esto se llama Scope ("alcance"). La única forma de acceder a algo dentro de la función es devolverlo.
 
 También podemos establecer variables para igualar lo que devuelve una función.
@@ -276,11 +288,11 @@ En este ejemplo, vamos a utilizar operadores de control de flujo y comparación.
 
 ```javascript
 function puedeManejar(edad) {
-    if (edad > 18) {
-        return true;
-    }
+  if (edad > 18) {
+    return true;
+  }
 
-    return false;
+  return false;
 }
 
 puedeManejar(22); // true
@@ -337,10 +349,10 @@ En la última lección usamos operadores de comparación, ahora profundizaremos 
 En la última lección presentamos nuestros operadores de comparación, (`>` `>=` `<` `<=` `===` `!==`). Estos operadores funcionan como lo harían en una clase de matemáticas, mayor que, menor que, etc. Utilizamos estos operadores para evaluar dos expresiones. A medida que la computadora ejecuta el código, el operador devolverá un `verdadero` (si la declaración es verdadera) o un` falso`.
 
 ```javascript
-1 > 2;     // false
-2 < 3;     // true
-10 >= 10;  // true
-100 <= 1;  // false
+1 > 2; // false
+2 < 3; // true
+10 >= 10; // true
+100 <= 1; // false
 ```
 
 El "triple igual" (`===`) no debe confundirse con un solo signo igual (que indica asignar un valor a una variable). El triple igual comparará todo sobre los dos elementos, incluido el tipo, y devolverá si son exactamente iguales o no:
@@ -348,10 +360,10 @@ El "triple igual" (`===`) no debe confundirse con un solo signo igual (que indic
 (Algo a tener en cuenta: hay un "doble igual" (`==`) que comparará dos elementos, pero NO tendrá en cuenta sus tipos (`1 == '1' // verdadero`). Debido a esto , se considera una mala práctica usar el doble igual. Nos gustaría verte siempre usando el triple, y siempre nos verás usándolo.)
 
 ```javascript
-1 === 1;          // true
-1 === '1';        // false
-'perro' === 'perro';  // true
-'perro' === 'Perro';  // false
+1 === 1; // true
+1 === '1'; // false
+'perro' === 'perro'; // true
+'perro' === 'Perro'; // false
 ```
 
 El último operador de comparación que nos gustaría presentarle tiene dos partes.
@@ -361,10 +373,10 @@ Primero es el "NOT" (`!`). Cuando veas esto significará que estamos preguntando
 Con eso en mente, podemos introducir el "no es igual" (`!==`). Esto devolverá verdadero si los artículos NO son iguales entre sí de alguna manera. Esto, como el triple igual, tiene en cuenta el tipo de dato.
 
 ```javascript
-1 !== 1;          // false
-1 !== '1';        // true
-'perro' !== 'perro';  // false
-'perro' !== 'Perro';  // true
+1 !== 1; // false
+1 !== '1'; // true
+'perro' !== 'perro'; // false
+'perro' !== 'Perro'; // true
 ```
 
 ## Flujos de control (continuación)
@@ -373,7 +385,7 @@ En la última lección aprendimos sobre el operador `if`. Podemos usar `if` para
 
 ```javascript
 if (1 + 1 === 2) {
-    console.log('La expresión es verdadera');
+  console.log('La expresión es verdadera');
 }
 ```
 
@@ -381,22 +393,23 @@ Para complementar a `if`, también podemos usar las declaraciones` else if` y `e
 
 ```javascript
 if (false) {
-    console.log('Este código será omitido');
+  console.log('Este código será omitido');
 } else if (true) {
-    console.log('Este código correrá');
+  console.log('Este código correrá');
 } else if (true) {
-    console.log('Este código NO correrá');
+  console.log('Este código NO correrá');
 }
 ```
+
 La declaración `else` siempre aparecerá al final de una cadena `if-else` o `if`, y actuará de manera predeterminada. Si ninguna de las expresiones devuelve `true`, el bloque de código `else` se ejecutará sin importar qué. Si alguna de las expresiones anteriores `if` o `else if` son `true`, el bloque de código de instrucción` else` no se ejecutará.
 
 ```javascript
 if (false) {
-    console.log('Este código será omitido');
+  console.log('Este código será omitido');
 } else if (false) {
-    console.log('Este código NO correrá');
+  console.log('Este código NO correrá');
 } else {
-    console.log('Este código correrá');
+  console.log('Este código correrá');
 }
 ```
 
@@ -410,11 +423,13 @@ El primer operador lógico que veremos es el operador "Y" ("AND"). Está escrito
 
 ```javascript
 if (100 > 10 && 10 === 10) {
-    console.log('Ambas declaraciones son ciertas, este código se ejecutará');
+  console.log('Ambas declaraciones son ciertas, este código se ejecutará');
 }
 
 if (10 === 9 && 10 > 9) {
-    console.log('Una de las declaraciones es false, por lo que && devolverá false, y este código no se ejecutará');
+  console.log(
+    'Una de las declaraciones es false, por lo que && devolverá false, y este código no se ejecutará',
+  );
 }
 ```
 
@@ -424,15 +439,19 @@ El siguiente es el operador "Ó" ("OR"). Está escrito con dos barras verticales
 
 ```javascript
 if (100 > 10 || 10 === 10) {
-    console.log('Ambas declaraciones son ciertas, este código se ejecutará');
+  console.log('Ambas declaraciones son ciertas, este código se ejecutará');
 }
 
 if (10 === 9 || 10 > 9) {
-    console.log('Una de las declaraciones es true, por lo que || devolverá true y este código se ejecutará');
+  console.log(
+    'Una de las declaraciones es true, por lo que || devolverá true y este código se ejecutará',
+  );
 }
 
 if (10 === 9 || 1 > 9) {
-    console.log('Una de las declaraciones es falsa, por lo que || devolverá false y este código no se ejecutará');
+  console.log(
+    'Una de las declaraciones es falsa, por lo que || devolverá false y este código no se ejecutará',
+  );
 }
 ```
 
@@ -442,11 +461,15 @@ El último operador lógico es el operador "NOT" ("NO"). Está escrito como un s
 
 ```javascript
 if (!false) {
-    console.log('El ! devolverá true, porque es lo contrario de false, así que ste código se ejecutará');
+  console.log(
+    'El ! devolverá true, porque es lo contrario de false, así que ste código se ejecutará',
+  );
 }
 
 if (!(1 === 1)) {
-    console.log('1 es igual a 1, de modo que la expresión devuelve true. El operador ! devolverá lo contrario de eso, por lo que este código se ejecutará');
+  console.log(
+    '1 es igual a 1, de modo que la expresión devuelve true. El operador ! devolverá lo contrario de eso, por lo que este código se ejecutará',
+  );
 }
 ```
 
@@ -454,9 +477,9 @@ if (!(1 === 1)) {
 
 Un par de cosas a tener en cuenta sobre los operadores lógicos.
 
-* Las expresiones se evalúan en orden, y la computadora omitirá cualquier expresión redundante. En una declaración `&&`, si la primera expresión es `false`, la segunda expresión no se evaluará porque AMBAS expresiones deben ser` true`. Lo mismo para la declaración `||`. Si la primera expresión es `verdadero`, la segunda no se evaluará porque solo debe haber una declaración` verdadero` para cumplir con los requisitos del operador.
+- Las expresiones se evalúan en orden, y la computadora omitirá cualquier expresión redundante. En una declaración `&&`, si la primera expresión es `false`, la segunda expresión no se evaluará porque AMBAS expresiones deben ser` true`. Lo mismo para la declaración `||`. Si la primera expresión es `verdadero`, la segunda no se evaluará porque solo debe haber una declaración` verdadero` para cumplir con los requisitos del operador.
 
-* Usá paréntesis. Como vimos en el segundo ejemplo de operador `!`, usamos paréntesis para evaluar PRIMERO lo que estaba dentro de los paréntesis, luego aplicamos el operador `!`. Podemos ajustar cualquier expresión entre paréntesis y se evaluará antes de evaluar la expresión como un todo.
+- Usá paréntesis. Como vimos en el segundo ejemplo de operador `!`, usamos paréntesis para evaluar PRIMERO lo que estaba dentro de los paréntesis, luego aplicamos el operador `!`. Podemos ajustar cualquier expresión entre paréntesis y se evaluará antes de evaluar la expresión como un todo.
 
 ## Bucles `for`
 
@@ -465,9 +488,9 @@ La mayoría del software se ejecuta en bucles, evaluando expresiones una y otra 
 Los bucles `for` tienen una sintaxis única, similar a la instrucción` if`, pero un poco más compleja. Primero tenemos la palabra clave `for`, seguida de paréntesis y luego abrir y cerrar llaves. Dentro de los paréntesis necesitaremos tres cosas. Primero, debemos declarar una variable, esto es sobre lo que se repetirá el bucle. Entonces tendremos una expresión condicional, el ciclo continuará sucediendo hasta que esta declaración sea `false`. Tercero, incrementaremos nuestra variable. Las tres declaraciones están separadas por un punto y coma.
 
 ```javascript
-for (let i = 0                 ; i < 10                 ; i++          ) {
-// | Declaramos una variable | Expresión condcicional | Incrementamos la variable |
-    console.log(i);
+for (let i = 0; i < 10; i++) {
+  // | Declaramos una variable | Expresión condcicional | Incrementamos la variable |
+  console.log(i);
 }
 ```
 
@@ -483,7 +506,7 @@ Es posible que un bucle se atasque en lo que llamamos un "bucle infinito". Debes
 
 ```javascript
 for (let i = 0; i >= 0; i++) {
-    console.log(i);
+  console.log(i);
 }
 ```
 
@@ -543,18 +566,18 @@ switch (dia) {
 
 ## Mapa práctica (`homework.js` ↔ temario introductorio)
 
-| Tema | Funciones / constantes de referencia |
-|------|--------------------------------------|
-| `var` / `let` / `const` y mutación | `valoresDelIndiceConLetEnBucle`, `construirListaConConstMutando`, `resultadoHoisting` |
-| Tipos, `null`, `undefined`, `NaN` | `esRealmenteNulo`, `esValorUndefined`, `esNumeroValido`, `esNumeroFinitoValor` |
-| Operadores aritméticos y composición (`+=`, `++`, …) | Ejercicios iniciales y `acumularPorPasos`, `aplicarIncrementoDesdeCero` |
-| `Number`, `parseInt`, `parseFloat`, `toFixed` | `enteroDesdeBinario`, `floatDesdeTexto`, `precioFormateadoDosDecimales` |
-| `Math` (potencias ya en ejercicios base; aleatorio/floor nuevos) | `redondearHaciaAbajo`, `aleatorioEnteroInclusive`; seguir usando `Math` donde indique cada consigna |
-| Strings (`length`, `indexOf`, `slice`, …) | `tienenMismaLongitud` (base), más `buscarIndiceCadena`, `extraerPorSlice`, `limpiarEspaciosExtremos`, `partirEnEspacios`, `reemplazarGuionesPorEspacio`, `minusculasYRecortado`, `mayusculasTrasTrim` |
-| Comparación `===` y AND / OR / NOT (`&&`, doble barra, `!`) | `sonEstrictamenteIguales`, `puedePasarAlEvento`, `noEsValorFalso` |
-| `if`, ternario, `switch/default` | Varios ejercicios base; nuevos `clasificarSigno` (ternarios), `clasificarTipoDia` (`switch`) |
-| `for`, `while`, `do…while` | `sumaDesdeUnoConWhile`, `primerMultiploEnIntervaloDoWhile`, `tablaMultiplicacionForBase`; `for` también en `esPrimo`, etc. |
-| Funciones: parámetros, `return`, valores por defecto | Todas las funciones; destacar `saludarConTitulo`, `elevarConExponentePorDefecto` |
+| Tema                                                             | Funciones / constantes de referencia                                                                                                                                                                  |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `var` / `let` / `const` y mutación                               | `valoresDelIndiceConLetEnBucle`, `construirListaConConstMutando`, `resultadoHoisting`                                                                                                                 |
+| Tipos, `null`, `undefined`, `NaN`                                | `esRealmenteNulo`, `esValorUndefined`, `esNumeroValido`, `esNumeroFinitoValor`                                                                                                                        |
+| Operadores aritméticos y composición (`+=`, `++`, …)             | Ejercicios iniciales y `acumularPorPasos`, `aplicarIncrementoDesdeCero`                                                                                                                               |
+| `Number`, `parseInt`, `parseFloat`, `toFixed`                    | `enteroDesdeBinario`, `floatDesdeTexto`, `precioFormateadoDosDecimales`                                                                                                                               |
+| `Math` (potencias ya en ejercicios base; aleatorio/floor nuevos) | `redondearHaciaAbajo`, `aleatorioEnteroInclusive`; seguir usando `Math` donde indique cada consigna                                                                                                   |
+| Strings (`length`, `indexOf`, `slice`, …)                        | `tienenMismaLongitud` (base), más `buscarIndiceCadena`, `extraerPorSlice`, `limpiarEspaciosExtremos`, `partirEnEspacios`, `reemplazarGuionesPorEspacio`, `minusculasYRecortado`, `mayusculasTrasTrim` |
+| Comparación `===` y AND / OR / NOT (`&&`, doble barra, `!`)      | `sonEstrictamenteIguales`, `puedePasarAlEvento`, `noEsValorFalso`                                                                                                                                     |
+| `if`, ternario, `switch/default`                                 | Varios ejercicios base; nuevos `clasificarSigno` (ternarios), `clasificarTipoDia` (`switch`)                                                                                                          |
+| `for`, `while`, `do…while`                                       | `sumaDesdeUnoConWhile`, `primerMultiploEnIntervaloDoWhile`, `tablaMultiplicacionForBase`; `for` también en `esPrimo`, etc.                                                                            |
+| Funciones: parámetros, `return`, valores por defecto             | Todas las funciones; destacar `saludarConTitulo`, `elevarConExponentePorDefecto`                                                                                                                      |
 
 ## Introducción a Node y NPM
 
@@ -582,15 +605,15 @@ Las consignas concretas están en los comentarios de **`homework.js`** y la tabl
 
 ## Recursos adicionales
 
-* [Codecademy: Learn Javascript](https://www.codecademy.com/learn/learn-javascript)
-* [Udacity: Intro to Javascript](https://www.udacity.com/course/intro-to-javascript--ud803)
-* [MDN: Official Javascript Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-* [MDN: Comparison Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)
-* [MDN: Control Flow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
-* [MDN: Logical Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
-* [MDN: for Loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
-* [MDN (es): `while` y `do…while`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/while)
-* [MDN (es): condicional ternario (`? :`)](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
-* [MDN (es): `switch`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/switch)
-* [MDN (es): `parseInt`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
-* [MDN (es): métodos de `String`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String)
+- [Codecademy: Learn Javascript](https://www.codecademy.com/learn/learn-javascript)
+- [Udacity: Intro to Javascript](https://www.udacity.com/course/intro-to-javascript--ud803)
+- [MDN: Official Javascript Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [MDN: Comparison Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)
+- [MDN: Control Flow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+- [MDN: Logical Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
+- [MDN: for Loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+- [MDN (es): `while` y `do…while`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/while)
+- [MDN (es): condicional ternario (`? :`)](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
+- [MDN (es): `switch`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/switch)
+- [MDN (es): `parseInt`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+- [MDN (es): métodos de `String`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String)

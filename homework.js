@@ -13,7 +13,7 @@ const nuevoBool = null;
 const nuevaResta = 10 - null === 5;
 
 // Resuelve el siguiente problema matemático:
-const nuevaMultiplicacion = 10 * null === 40 ;
+const nuevaMultiplicacion = 10 * null === 40;
 
 // Resuelve el siguiente problema matemático:
 const nuevoModulo = 21 % 5 === null;
@@ -42,7 +42,7 @@ function suma(x, y) {
 }
 
 function resta(x, y) {
-  // Devuelve "x" menos "y" 
+  // Devuelve "x" menos "y"
   // Tu código:
 }
 
@@ -171,9 +171,9 @@ function saludo(idioma) {
 }
 
 function esDiezOCinco(numero) {
-    // Devuelve "true" si "numero" es 10 o 5
-    // De lo contrario, devuelve "false"
-    // Tu código:
+  // Devuelve "true" si "numero" es 10 o 5
+  // De lo contrario, devuelve "false"
+  // Tu código:
 }
 
 function estaEnRango(numero) {
@@ -436,5 +436,5 @@ module.exports = {
   primerMultiploEnIntervaloDoWhile,
   tablaMultiplicacionForBase,
   saludarConTitulo,
-  elevarConExponentePorDefecto
+  elevarConExponentePorDefecto,
 };
